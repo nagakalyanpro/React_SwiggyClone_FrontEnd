@@ -1,1 +1,1 @@
-export const API_URL = "https://react-swiggy-backend-dashboard.vercel.app"
+export const API_URL = "https://ruby-swiggyclone-backend-nodejs.onrender.com"
