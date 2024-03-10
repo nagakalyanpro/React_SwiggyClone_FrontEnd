@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 const CartItems = () => {
   const [cartData, setCartData] = useState({});
   const [loading, setLoading] = useState(true);
+  const [itemCount, setItemCount] = useState(0);
+  const [showNav, setShowNav] = useState(false);
 
   useEffect(() => {
     const fetchCartDetails = async () => {
@@ -17,7 +19,9 @@ const CartItems = () => {
         const response = await fetch(`${API_URL}/user/cartDetails/${firmId}/${userId}`);
         const data = await response.json();
         setCartData(data);
+        setItemCount(data.items ? data.items.length : 0); // Update item count
         setLoading(false); 
+        console.log(itemCount,': item count')
       } catch (error) {
         console.error('Error fetching cart details:', error);
         setLoading(false); 
@@ -30,6 +34,8 @@ const CartItems = () => {
   return (
     <div className='cartSection'>
       <h2>Cart Details</h2>
+      <p>Total items in the cart: {itemCount}</p>
+
       {loading ? (
         <p>Loading cart details...</p>
       ) : (
@@ -37,25 +43,24 @@ const CartItems = () => {
           <div className='cartItems'>
             {cartData.items.map((item) => (
               <div key={item._id} className='itemBox'>
-               <ul>
-               <p>Product: <strong className='itemName'>{item.product.name}</strong></p>
-                <p>Amount: ₹ {item.product.price}</p>
-               </ul>
+                <ul>
+                  <p>Product: <strong className='itemName'>{item.product.name}</strong></p>
+                  <p>Amount: ₹ {item.product.price}</p>
+                </ul>
                 <div className='itemImg'>
-              {item.product.image && <img src={`${API_URL}/uploads/${item.product.image}`} alt="" />}
+                  {item.product.image && <img src={`${API_URL}/uploads/${item.product.image}`} alt="" />}
                 </div>
-                
               </div>
             ))}
           </div>
         ) : (
           <>
-          <p>Your cart is Empty.</p>
-          <Link to='/'>
-            <div>
-            Add your favourite food
-            </div>
-          </Link>
+            <p>Your cart is Empty.</p>
+            <Link to='/'>
+              <div>
+                Add your favourite food
+              </div>
+            </Link>
           </>
         )
       )}

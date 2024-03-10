@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { API_URL } from "../utils/api";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
+import { MagnifyingGlass } from 'react-loader-spinner'
 
 const ChainItems = () => {
   const [firmData, setFirmData] = useState([]);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   const firmDetails = async () => {
     try {
@@ -13,13 +15,14 @@ const ChainItems = () => {
       const data = await response.json();
       if (data && Array.isArray(data.firms)) {
         setFirmData(data.firms);
+        setLoading(false)
       } else {
         console.error("Invalid data structure:", data);
-        alert("Error in fetching data");
+       setLoading(true)
       }
     } catch (error) {
       console.log(error);
-      alert("Error in fetching data");
+      setLoading(true)
     }
   };
 
@@ -45,6 +48,21 @@ const ChainItems = () => {
   };
 
   return (
+  <>
+  {loading && <div className="loader">
+    Your 🥣 is Loading...
+    <br />
+  <MagnifyingGlass 
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="magnifying-glass-loading"
+          wrapperStyle={{}}
+          wrapperClass="magnifying-glass-wrapper"
+          glassColor="#c0efff"
+          color="#e15b64"
+        />
+  </div> }
     <section className="chainSection">
       <div className="chainBox">
         <h2>Top restaurant chains in Hyderabad</h2>
@@ -80,6 +98,7 @@ const ChainItems = () => {
         </div>
       </div>
     </section>
+  </>
   );
 };
 

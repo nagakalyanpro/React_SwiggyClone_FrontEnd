@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { API_URL } from '../utils/api';
 import { useParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const FirmMenu = () => {
     const [firmProducts, setFirmProducts] = useState([]);
     const { firmId, firmName } = useParams();
     const userId = localStorage.getItem('userId');
+    const [message, setMessage] = useState(false)
+
+    const notify=()=> toast("Please Login to add item to cart");
+    
    
     const productsHandler = async () => {
         try {
@@ -44,7 +51,8 @@ const FirmMenu = () => {
                 }),
             });
             if(!userId){
-                alert('Please Login to add item to cart');
+                // alert('Please Login to add item to cart');
+                notify();
             }
     
             if (!response.ok) {
@@ -68,6 +76,18 @@ const FirmMenu = () => {
     return (
         <div className='firmProductSection'>
             <h2>{firmName}</h2>
+            <ToastContainer 
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+            />
             {firmProducts.map((product) => (
                 <div key={product._id} className='productBox'>
                     <div className="menuBox">

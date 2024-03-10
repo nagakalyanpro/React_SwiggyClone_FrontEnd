@@ -67,7 +67,7 @@ const AllFirms = () => {
         <button onClick={() => filterByCategory('all')}>All</button>
         <button onClick={() => filterByCategory('veg')}>Veg</button>
         {/* <button onClick={() => filterByCategory('non-veg')}>Non-Veg</button> */}
-        <button onClick={() => filterByRegion('all')}>All Regions</button>
+        {/* <button onClick={() => filterByRegion('all')}>All Regions</button> */}
         <button onClick={() => filterByRegion('south-indian')}>South Indian</button>
         <button onClick={() => filterByRegion('north-indian')}>North Indian</button>
         <button onClick={() => filterByRegion('chinese')}>Chinese</button>
