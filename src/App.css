@@ -385,7 +385,7 @@
     .chainBox h2 {
         font-size: 1rem;
     }
-    .scrollButtons {
+    /* .scrollButtons {
         position: absolute;
         right: 0;
         width: 30vw;
@@ -393,7 +393,7 @@
         margin-bottom: 20px;
         margin-top: 10px;
         padding-right: 10px;
-    }
+    } */
     .chainImgBox {
         width: 200px;
         margin-top: 30px;
@@ -413,7 +413,6 @@
     }
     .filterButtons {
         max-width: 100vw;
-        overflow: hidden;
     }
     .filterButtons button {
         flex-wrap: nowrap;
