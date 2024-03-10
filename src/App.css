@@ -431,7 +431,7 @@
     }
     .activeButton {
         background-color: brown;
-        color: darkblue;
+        color: white;
     }
     .firmGallery {
         display: flex;
