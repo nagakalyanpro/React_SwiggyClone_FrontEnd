@@ -29,6 +29,7 @@ const ChainItems = () => {
   useEffect(() => {
     firmDetails();
   }, []);
+ 
 
   const handleScroll = (direction) => {
     const gallery = document.getElementById("chainGallery");
