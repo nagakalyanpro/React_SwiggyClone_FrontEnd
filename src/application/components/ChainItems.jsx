@@ -3,6 +3,7 @@ import { API_URL } from "../utils/api";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 import { MagnifyingGlass } from 'react-loader-spinner'
+import { Link } from "react-router-dom";
 
 const ChainItems = () => {
   const [firmData, setFirmData] = useState([]);
@@ -87,6 +88,12 @@ const ChainItems = () => {
           onScroll={(e) => setScrollPosition(e.target.scrollLeft)}
         >
           {firmData.map((item) => (
+                        <Link
+                        to={`/products/${item._id}/${encodeURIComponent(item.firmName)}`}
+                        key={item._id}
+                        className='link'
+                        onClick={() => handleFirmClick(item._id)}
+                      >
             <>
               <div key={item._id} className="chainImgBox zoomEffect">
                 {item.image && (
@@ -95,6 +102,7 @@ const ChainItems = () => {
                 <div className="chainOffer"> {item.offer}</div>
               </div>
             </>
+            </Link>
           ))}
         </div>
       </div>
